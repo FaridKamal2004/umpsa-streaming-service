@@ -1,0 +1,20 @@
+{
+  "name": "umpsa-streaming-service",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An accessible streaming discovery portfolio demo evolved from a university system analysis project.",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "@playwright/test": "1.58.2"
+  }
+}
