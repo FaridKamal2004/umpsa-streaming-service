@@ -11,6 +11,7 @@ Validation date: **16 November 2026** (Asia/Kuala_Lumpur).
 | Chromium mobile (Pixel 7 emulation) | 10 passed | The same scenarios at a mobile viewport |
 | axe-core | No detected violations | WCAG 2/2.1 A and AA rules on the discovery page and open profile dialog, desktop and mobile; included in browser tests |
 | Static build | Passed | `dist/index.html` and browser modules generated |
+| Live media smoke check | 4 films passed | Actual decoding, seeking, persistence, and resume after reload for Sintel (888s), Big Buck Bunny (596s), Tears of Steel (734s), and Elephants Dream (654s) |
 | JavaScript syntax | Passed | Application module parsed with Node |
 | npm dependency audit at installation | 0 vulnerabilities reported | Development dependencies only; not a security certification |
 

@@ -1,42 +1,245 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111715">
-  <meta name="description" content="Discover open films in UMPSA Stream, an independent streaming-service portfolio demo.">
-  <title>UMPSA Stream · A little escape</title>
-  <link rel="icon" href="./src/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./src/styles.css">
-  <script type="module" src="./src/app.js"></script>
-</head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="topbar">
-    <a href="./" class="brand" aria-label="UMPSA Stream home"><span class="brand-mark" aria-hidden="true">u<span>▶</span></span><span>UMPSA<span class="brand-sub">STREAM</span></span></a>
-    <nav aria-label="Main navigation"><button class="nav-link active" data-view="discover" aria-current="page">Discover</button><button class="nav-link" data-view="list">My list <span id="list-count">0</span></button><button class="nav-link" data-view="history">Continue watching</button></nav>
-    <button id="profile-button" class="profile-button" aria-label="Edit viewer profile"><span id="avatar">G</span><span id="viewer-name">Guest</span></button>
-  </header>
-  <main id="main">
-    <section id="hero" class="hero" aria-labelledby="hero-title">
-      <div class="hero-art" aria-hidden="true"><div class="moon"></div><div class="hero-mountain mountain-back"></div><div class="hero-mountain mountain-front"></div><div class="ridge"></div><div class="traveler"></div><div class="hero-caption">THE OPEN FILM COLLECTION <span>01 / 04</span></div></div>
-      <div class="hero-copy"><p class="eyebrow"><span></span> CURATOR’S PICK</p><h1 id="hero-title">Small films.<br>Extraordinary<br><em>worlds.</em></h1><p class="hero-description">Your next escape doesn’t need two hours.<br>Discover the art of the short film.</p><div class="hero-actions"><button class="primary" id="hero-play">▶ Watch Sintel</button><button class="secondary" id="hero-details">Explore the film ↗</button></div><p class="hero-meta">SINTEL <span>2010</span><span>15 MIN</span><span>FANTASY</span></p></div>
-    </section>
-    <div class="content">
-      <section class="intro"><div><p class="eyebrow">LESS SCROLLING. MORE STORIES.</p><h2 id="section-title">Find your next little escape<span>.</span></h2><p id="section-description">Independent spirit. Open cinema. Yours to explore.</p></div><span class="collection-note">THE OPEN COLLECTION <span>↙</span></span></section>
-      <section aria-label="Filter films" class="toolbar"><div class="search-wrap"><span aria-hidden="true">⌕</span><label class="sr-only" for="search">Search films</label><input id="search" type="search" placeholder="Search titles, directors, stories…" maxlength="120"></div><div class="genre-group" role="group" aria-label="Genre"><button class="chip selected" data-genre="All" aria-pressed="true">All films</button><button class="chip" data-genre="Animation" aria-pressed="false">Animation</button><button class="chip" data-genre="Fantasy" aria-pressed="false">Fantasy</button><button class="chip" data-genre="Sci-fi" aria-pressed="false">Sci-fi</button></div><div class="sort-label"><label for="sort">Sort</label><select id="sort"><option value="curated">Curated</option><option value="newest">Newest</option><option value="shortest">Shortest</option><option value="title">A–Z</option></select></div></section>
-      <p id="results-summary" class="results-summary" role="status"></p>
-      <section id="catalog" class="film-grid" aria-label="Film collection"></section>
-      <div id="empty" class="empty" hidden><span aria-hidden="true">↗</span><h3 id="empty-title">No films found</h3><p id="empty-description">Try a different title or genre.</p><button id="reset-filters" class="secondary">Clear filters</button></div>
-      <section class="editorial"><span class="editorial-icon" aria-hidden="true">✳</span><div><p class="eyebrow">CINEMA, SHARED.</p><h2>Good stories belong to everyone.</h2><p>Four open films. Boundless imagination. Made by the Blender community,<br class="desktop-break"> brought together in a place built for discovery.</p></div><button id="about-button" class="text-button">About this project ↗</button></section>
-    </div>
-  </main>
-  <footer><a class="footer-brand" href="./">UMPSA / STREAM</a><p>Independent portfolio demo · Browser-only profiles · No payments</p><button id="credits-button" class="text-button">Film credits & privacy ↗</button></footer>
-  <dialog id="film-dialog" aria-labelledby="film-title"><button class="close" data-close aria-label="Close film details">✕</button><div id="film-detail"></div></dialog>
-  <dialog id="player-dialog" aria-labelledby="player-title"><button class="close" data-close aria-label="Close player">✕</button><p class="eyebrow">NOW PLAYING</p><h2 id="player-title"></h2><video id="video" controls playsinline preload="metadata"></video><p id="player-status" role="status">Video is served by an external sample-media host. Internet access is required.</p><p id="player-credit" class="credit"></p></dialog>
-  <dialog id="profile-dialog" aria-labelledby="profile-title"><button class="close" data-close aria-label="Close profile">✕</button><p class="eyebrow">MAKE YOURSELF AT HOME</p><h2 id="profile-title">Your viewing space.</h2><p>This demo saves one profile, your list, and playback progress in this browser. It does not create an online account.</p><form id="profile-form"><label for="profile-name">Display name</label><input id="profile-name" name="name" maxlength="32" required autocomplete="nickname" placeholder="What should we call you?"><button type="submit" class="primary">Save profile</button></form><hr><p>Using a shared device? Clear your profile, list, and watch history when you’re done.</p><button id="clear-data" class="danger">Clear my local data</button><div id="clear-confirm" hidden><p>Delete this browser’s profile, saved films, and viewing progress?</p><button id="confirm-clear" class="danger">Yes, clear local data</button><button id="cancel-clear" class="secondary">Cancel</button></div></dialog>
-  <dialog id="about-dialog" aria-labelledby="about-title"><button class="close" data-close aria-label="Close project information">✕</button><p class="eyebrow">FROM CLASSROOM TO SCREEN</p><h2 id="about-title">A system, brought to life.</h2><p>An independent portfolio enhancement of the UMPSA Streaming Service System coursework prototype. This is a working frontend demo, with no affiliation with or endorsement by UMPSA.</p><h3>Built for the demo</h3><p>Live search, combined genre filters, sorting, a persistent watchlist, browser-local profiles, viewing progress, and a native video player. Curated ordering adapts to genres you save or watch.</p><h3>Clear boundaries</h3><p>No real authentication, subscription billing, DRM, offline video downloads, or server database. Profile data stays in this browser. Film playback contacts Internet Archive media mirrors and is subject to its availability.</p><h3>Film credits</h3><div id="credits"></div><p>Film files are streamed without modification. Artwork is original abstract CSS/SVG illustration, not official film posters. Film descriptions are original summaries. External links open the credited creators’ websites.</p></dialog>
-  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
-  <noscript><p class="noscript">Enable JavaScript to browse films and use the demo.</p></noscript>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111715" />
+    <meta
+      name="description"
+      content="Discover open films in UMPSA Stream, an independent streaming-service portfolio demo."
+    />
+    <title>UMPSA Stream · A little escape</title>
+    <link rel="icon" href="./src/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="topbar">
+      <a href="./" class="brand" aria-label="UMPSA Stream home"
+        ><span class="brand-mark" aria-hidden="true">u<span>▶</span></span
+        ><span>UMPSA<span class="brand-sub">STREAM</span></span></a
+      >
+      <nav aria-label="Main navigation">
+        <button
+          class="nav-link active"
+          data-view="discover"
+          aria-current="page"
+        >
+          Discover</button
+        ><button class="nav-link" data-view="list">
+          My list <span id="list-count">0</span></button
+        ><button class="nav-link" data-view="history">Continue watching</button>
+      </nav>
+      <button
+        id="profile-button"
+        class="profile-button"
+        aria-label="Edit viewer profile"
+      >
+        <span id="avatar">G</span><span id="viewer-name">Guest</span>
+      </button>
+    </header>
+    <main id="main">
+      <section id="hero" class="hero" aria-labelledby="hero-title">
+        <div class="hero-art" aria-hidden="true">
+          <div class="moon"></div>
+          <div class="hero-mountain mountain-back"></div>
+          <div class="hero-mountain mountain-front"></div>
+          <div class="ridge"></div>
+          <div class="traveler"></div>
+          <div class="hero-caption">
+            THE OPEN FILM COLLECTION <span>01 / 04</span>
+          </div>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> CURATOR’S PICK</p>
+          <h1 id="hero-title">
+            Small films.<br />Extraordinary<br /><em>worlds.</em>
+          </h1>
+          <p class="hero-description">
+            Your next escape doesn’t need two hours.<br />Discover the art of
+            the short film.
+          </p>
+          <div class="hero-actions">
+            <button class="primary" id="hero-play">▶ Watch Sintel</button
+            ><button class="secondary" id="hero-details">
+              Explore the film ↗
+            </button>
+          </div>
+          <p class="hero-meta">
+            SINTEL <span>2010</span><span>15 MIN</span><span>FANTASY</span>
+          </p>
+        </div>
+      </section>
+      <div class="content">
+        <section class="intro">
+          <div>
+            <p class="eyebrow">LESS SCROLLING. MORE STORIES.</p>
+            <h2 id="section-title">
+              Find your next little escape<span>.</span>
+            </h2>
+            <p id="section-description">
+              Independent spirit. Open cinema. Yours to explore.
+            </p>
+          </div>
+          <span class="collection-note"
+            >THE OPEN COLLECTION <span>↙</span></span
+          >
+        </section>
+        <section aria-label="Filter films" class="toolbar">
+          <div class="search-wrap">
+            <span aria-hidden="true">⌕</span
+            ><label class="sr-only" for="search">Search films</label
+            ><input
+              id="search"
+              type="search"
+              placeholder="Search titles, directors, stories…"
+              maxlength="120"
+            />
+          </div>
+          <div class="genre-group" role="group" aria-label="Genre">
+            <button class="chip selected" data-genre="All" aria-pressed="true">
+              All films</button
+            ><button class="chip" data-genre="Animation" aria-pressed="false">
+              Animation</button
+            ><button class="chip" data-genre="Fantasy" aria-pressed="false">
+              Fantasy</button
+            ><button class="chip" data-genre="Sci-fi" aria-pressed="false">
+              Sci-fi
+            </button>
+          </div>
+          <div class="sort-label">
+            <label for="sort">Sort</label
+            ><select id="sort">
+              <option value="curated">Curated</option>
+              <option value="newest">Newest</option>
+              <option value="shortest">Shortest</option>
+              <option value="title">A–Z</option>
+            </select>
+          </div>
+        </section>
+        <p id="results-summary" class="results-summary" role="status"></p>
+        <section
+          id="catalog"
+          class="film-grid"
+          aria-label="Film collection"
+        ></section>
+        <div id="empty" class="empty" hidden>
+          <span aria-hidden="true">↗</span>
+          <h3 id="empty-title">No films found</h3>
+          <p id="empty-description">Try a different title or genre.</p>
+          <button id="reset-filters" class="secondary">Clear filters</button>
+        </div>
+        <section class="editorial">
+          <span class="editorial-icon" aria-hidden="true">✳</span>
+          <div>
+            <p class="eyebrow">CINEMA, SHARED.</p>
+            <h2>Good stories belong to everyone.</h2>
+            <p>
+              Four open films. Boundless imagination. Made by the Blender
+              community,<br class="desktop-break" />
+              brought together in a place built for discovery.
+            </p>
+          </div>
+          <button id="about-button" class="text-button">
+            About this project ↗
+          </button>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <a class="footer-brand" href="./">UMPSA / STREAM</a>
+      <p>Independent portfolio demo · Browser-only profiles · No payments</p>
+      <button id="credits-button" class="text-button">
+        Film credits & privacy ↗
+      </button>
+    </footer>
+    <dialog id="film-dialog" aria-labelledby="film-title">
+      <button class="close" data-close aria-label="Close film details">
+        ✕
+      </button>
+      <div id="film-detail"></div>
+    </dialog>
+    <dialog id="player-dialog" aria-labelledby="player-title">
+      <button class="close" data-close aria-label="Close player">✕</button>
+      <p class="eyebrow">NOW PLAYING</p>
+      <h2 id="player-title"></h2>
+      <video id="video" controls playsinline preload="metadata"></video>
+      <p id="player-status" role="status">
+        Video is served by an external sample-media host. Internet access is
+        required.
+      </p>
+      <p id="player-credit" class="credit"></p>
+    </dialog>
+    <dialog id="profile-dialog" aria-labelledby="profile-title">
+      <button class="close" data-close aria-label="Close profile">✕</button>
+      <p class="eyebrow">MAKE YOURSELF AT HOME</p>
+      <h2 id="profile-title">Your viewing space.</h2>
+      <p>
+        This demo saves one profile, your list, and playback progress in this
+        browser. It does not create an online account.
+      </p>
+      <form id="profile-form">
+        <label for="profile-name">Display name</label
+        ><input
+          id="profile-name"
+          name="name"
+          maxlength="32"
+          required
+          autocomplete="nickname"
+          placeholder="What should we call you?"
+        /><button type="submit" class="primary">Save profile</button>
+      </form>
+      <hr />
+      <p>
+        Using a shared device? Clear your profile, list, and watch history when
+        you’re done.
+      </p>
+      <button id="clear-data" class="danger">Clear my local data</button>
+      <div id="clear-confirm" hidden>
+        <p>Delete this browser’s profile, saved films, and viewing progress?</p>
+        <button id="confirm-clear" class="danger">Yes, clear local data</button
+        ><button id="cancel-clear" class="secondary">Cancel</button>
+      </div>
+    </dialog>
+    <dialog id="about-dialog" aria-labelledby="about-title">
+      <button class="close" data-close aria-label="Close project information">
+        ✕
+      </button>
+      <p class="eyebrow">FROM CLASSROOM TO SCREEN</p>
+      <h2 id="about-title">A system, brought to life.</h2>
+      <p>
+        An independent portfolio enhancement of the UMPSA Streaming Service
+        System coursework prototype. This is a working frontend demo, with no
+        affiliation with or endorsement by UMPSA.
+      </p>
+      <h3>Built for the demo</h3>
+      <p>
+        Live search, combined genre filters, sorting, a persistent watchlist,
+        browser-local profiles, viewing progress, and a native video player.
+        Curated ordering adapts to genres you save or watch.
+      </p>
+      <h3>Clear boundaries</h3>
+      <p>
+        No real authentication, subscription billing, DRM, offline video
+        downloads, or server database. Profile data stays in this browser. Film
+        playback contacts Internet Archive media mirrors and is subject to its
+        availability.
+      </p>
+      <h3>Film credits</h3>
+      <div id="credits"></div>
+      <p>
+        Film files are streamed without modification. Artwork is original
+        abstract CSS/SVG illustration, not official film posters. Film
+        descriptions are original summaries. External links open the credited
+        creators’ websites.
+      </p>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to browse films and use the demo.
+      </p></noscript
+    >
+  </body>
 </html>
